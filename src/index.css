@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 221 90% 65%;
+
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%), hsl(221 90% 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(38 92% 50%), hsl(45 93% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(217 91% 60%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(221 83% 53% / 0.1);
+    --shadow-medium: 0 4px 16px -4px hsl(221 83% 53% / 0.15);
+    --shadow-strong: 0 10px 40px -10px hsl(221 83% 53% / 0.25);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 221 90% 65%;
+
+    --secondary: 38 92% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 91% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 221 83% 53%;
+
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    direction: rtl;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Cairo', sans-serif;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+}
+
+@media print {
+
+  /* 
+     ORANGE TEMPLATE FIX - FINAL CORRECT APPROACH:
+     1. USE standard page margins (15mm) so text naturally flows safely on all pages.
+     2. FORCE Page 1 to have 0 top margin (Full Bleed Hero).
+     3. FORCE the sidebar background to "Bleed" out of those margins on Page 2+.
+  */
+  @page {
+    /* We MUST have margins for text safety on Page 2+ */
+    margin: 15mm 0mm !important;
+  }
+
+  /* But Page 1 must start at the top */
+  @page :first {
+    margin-top: 0mm !important;
+  }
+
+  #cv-orange-template {
+    position: relative;
+  }
+
+  /* The Black Sidebar Background - BLEEDING out of margins */
+  #cv-orange-template::before {
+    content: "";
+    position: fixed;
+    /* 
+       Extend UP and DOWN by 20mm to cover the 15mm margins
+       This ensures Sidebar is full height even on Page 2+
+    */
+    top: -20mm;
+    bottom: -20mm;
+    right: 0;
+    width: 35%;
+    background: #1a1a1a !important;
+    z-index: -1;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    pointer-events: none;
+  }
+
+  /* Remove the padding hacks since we now have real page margins */
+  #cv-orange-template .experience-item,
+  #cv-orange-template .education-item,
+  #cv-orange-template .project-item {
+    padding-top: 0 !important;
+  }
+
+  /* Ensure the content sits transparently on top where needed */
+  #cv-orange-template>.flex {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Only show the print content */
+  #cv-print-content,
+  #cv-print-content * {
+    visibility: visible;
+  }
+
+  /* Container setup for full bleed */
+  #cv-print-content {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* remove container padding to prevent white border box */
+    padding: 0 !important;
+    margin: 0 auto !important;
+    background: white;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* 
+     Content Padding:
+     8mm padding on all sides ensures content never sticks to any edge.
+  */
+  .p-6,
+  .p-8,
+  .p-10,
+  .print\:p-5 {
+    padding: 8mm !important;
+  }
+
+  /* Ensure text doesn't touch the very edge if standard classes aren't used */
+  #cv-print-content>div {
+    min-height: 100vh;
+  }
+
+  /* STRICT Page Break Rules */
+
+  /* Safe Item Spacing: Add internal padding so if it hits top of page, text is safe */
+  .experience-item,
+  .education-item,
+  .project-item,
+  .certificate-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    padding-top: 4mm !important;
+    margin-bottom: 2mm !important;
+  }
+
+  h2,
+  h3 {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: auto;
+    padding-top: 4mm !important;
+    /* Safety buffer for headings */
+  }
+
+  /* Ensure date ranges don't get orphaned */
+  .experience-item p,
+  .education-item p {
+    page-break-inside: avoid !important;
+    widows: 3;
+    orphans: 3;
+  }
+}

@@ -1,0 +1,16 @@
+project_id = "thajniymmcaihalzozpc"
+
+[functions.enhance-with-ai]
+verify_jwt = true
+
+[functions.create-payment]
+verify_jwt = true
+
+[functions.check-payment-status]
+verify_jwt = true
+
+[functions.verify-payment]
+verify_jwt = true
+
+[functions.update-usage]
+verify_jwt = true
