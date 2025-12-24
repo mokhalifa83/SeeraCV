@@ -50,13 +50,13 @@ const Index = () => {
             </div>
           ) : (
             <>
-              <Link to="/auth?tab=signin">
+              <Link to="/login">
                 <Button variant="ghost">تسجيل الدخول</Button>
               </Link>
               <Link to="/pricing">
                 <Button variant="ghost">الأسعار</Button>
               </Link>
-              <Link to="/auth?tab=signup">
+              <Link to="/signup">
                 <Button className="gradient-primary">ابدأ الآن مجاناً</Button>
               </Link>
             </>
@@ -99,7 +99,7 @@ const Index = () => {
                 <Zap className="mr-2 h-5 w-5" />
               </Button>
             ) : (
-              <Link to="/auth">
+              <Link to="/signup">
                 <Button size="lg" className="gradient-primary text-lg px-8 py-6 shadow-strong hover:shadow-strong hover:scale-105 transition-all">
                   ابدأ الآن مجاناً
                   <Zap className="mr-2 h-5 w-5" />
@@ -277,7 +277,7 @@ const Index = () => {
               <Zap className="mr-2 h-5 w-5" />
             </Button>
           ) : (
-            <Link to="/auth">
+            <Link to="/signup">
               <Button size="lg" variant="secondary" className="text-lg px-8 py-6">
                 ابدأ الآن
                 <Zap className="mr-2 h-5 w-5" />
