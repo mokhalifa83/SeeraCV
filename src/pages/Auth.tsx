@@ -13,7 +13,7 @@ import { useSearchParams } from "react-router-dom";
 
 // ... imports
 
-const Auth = () => {
+const Auth = ({ defaultTab }: { defaultTab?: "signin" | "signup" }) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [searchParams] = useSearchParams();
@@ -23,9 +23,9 @@ const Auth = () => {
   const [fullName, setFullName] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  // Default to 'signin', but check URL param 'tab'
-  const defaultTab = searchParams.get("tab") === "signup" ? "signup" : "signin";
-  const [activeTab, setActiveTab] = useState(defaultTab);
+  // Prioritize prop, then URL param, default to 'signin'
+  const initialTab = defaultTab || (searchParams.get("tab") === "signup" ? "signup" : "signin");
+  const [activeTab, setActiveTab] = useState<"signin" | "signup" | "forgot">(initialTab);
 
   const [resetEmail, setResetEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
