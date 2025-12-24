@@ -43,16 +43,20 @@ const Auth = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_IN" && session) {
-        // التحقق من تأكيد البريد الإلكتروني
-        if (session.user.email_confirmed_at) {
-          navigate("/builder");
-        } else {
+        // Check if user signed in via OAuth (Google, etc)
+        const isOAuthUser = session.user.app_metadata?.provider !== 'email';
+
+        // Only enforce email confirmation for email/password users
+        if (!isOAuthUser && !session.user.email_confirmed_at) {
           toast({
             title: "تأكيد البريد الإلكتروني مطلوب",
             description: "الرجاء تأكيد بريدك الإلكتروني قبل الدخول",
             variant: "destructive",
           });
           supabase.auth.signOut();
+        } else {
+          // OAuth users or confirmed email users → go to builder
+          navigate("/builder");
         }
       }
     });
