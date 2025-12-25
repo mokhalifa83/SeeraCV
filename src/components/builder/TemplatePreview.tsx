@@ -110,7 +110,7 @@ const TemplatePreview = ({ data }: TemplatePreviewProps) => {
                   <p className="text-gray-600">{exp.company || "اسم الشركة"}</p>
                 </div>
                 <div className="text-right text-sm text-gray-500">
-                  <p>{exp.location || "الموقع"}</p>
+                  {exp.location && <p>{exp.location}</p>}
                   <p>
                     {exp.startDate || "من"} - {exp.current ? "حتى الآن" : exp.endDate || "إلى"}
                   </p>
