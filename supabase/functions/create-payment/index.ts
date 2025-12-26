@@ -7,10 +7,9 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Whitelist of allowed price IDs
-// Whitelist of allowed price IDs from environment variables
-const STRIPE_PRICE_BASIC = Deno.env.get("STRIPE_PRICE_BASIC") || "price_1Siebe06snnNPrsyllAgNARD";
-const STRIPE_PRICE_PRO = Deno.env.get("STRIPE_PRICE_PRO") || "price_1SiebD86snnNPrsyMykdqgp4";
+// Whitelist of allowed price IDs (Hardcoded for Live Mode stability)
+const STRIPE_PRICE_BASIC = "price_1Siebe06snnNPrsyllAgNARD";
+const STRIPE_PRICE_PRO = "price_1SiebD86snnNPrsyMykdqgp4";
 
 const ALLOWED_PRICE_IDS: Record<string, string> = {
   [STRIPE_PRICE_BASIC]: "basic",

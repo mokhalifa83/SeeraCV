@@ -143,10 +143,10 @@ const Pricing = () => {
               className="w-full"
               size="lg"
               variant={isBasicActive ? "secondary" : "outline"}
-              onClick={() => handleCheckout(import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1Siebe06snnNPrsyllAgNARD", "الأساسية")}
-              disabled={loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1Siebe06snnNPrsyllAgNARD")}
+              onClick={() => handleCheckout("price_1Siebe06snnNPrsyllAgNARD", "الأساسية")}
+              disabled={loading === "price_1Siebe06snnNPrsyllAgNARD"}
             >
-              {loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1Siebe06snnNPrsyllAgNARD") ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 10$" : "اشترِ الآن - 10$")}
+              {loading === "price_1Siebe06snnNPrsyllAgNARD" ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 10$" : "اشترِ الآن - 10$")}
             </Button>
           </div>
 
@@ -220,10 +220,10 @@ const Pricing = () => {
             <Button
               className="w-full gradient-primary"
               size="lg"
-              onClick={() => handleCheckout(import.meta.env.VITE_STRIPE_PRICE_PRO || "price_1SiebD86snnNPrsyMykdqgp4", "الاحترافية")}
-              disabled={loading === (import.meta.env.VITE_STRIPE_PRICE_PRO || "price_1SiebD86snnNPrsyMykdqgp4")}
+              onClick={() => handleCheckout("price_1SiebD86snnNPrsyMykdqgp4", "الاحترافية")}
+              disabled={loading === "price_1SiebD86snnNPrsyMykdqgp4"}
             >
-              {loading === (import.meta.env.VITE_STRIPE_PRICE_PRO || "price_1SiebD86snnNPrsyMykdqgp4") ? "جاري التحميل..." : (isProActive ? "تمديد الباقة / شراء المزيد - 20$" : "اشترِ الآن - 20$")}
+              {loading === "price_1SiebD86snnNPrsyMykdqgp4" ? "جاري التحميل..." : (isProActive ? "تمديد الباقة / شراء المزيد - 20$" : "اشترِ الآن - 20$")}
               <Sparkles className="mr-2 h-5 w-5" />
             </Button>
           </div>
