@@ -31,15 +31,15 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       {/* Header */}
-      <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+      <header className="container mx-auto px-4 py-4 md:py-6 flex flex-wrap justify-between items-center gap-4">
         <div className="flex items-center gap-2">
-          <FileText className="h-8 w-8 text-primary" />
-          <h1 className="text-2xl font-bold text-primary">سيرتي</h1>
+          <FileText className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+          <h1 className="text-xl md:text-2xl font-bold text-primary">سيرتي</h1>
         </div>
-        <nav className="flex gap-4 items-center">
+        <nav className="flex gap-2 md:gap-4 items-center flex-wrap">
           {session ? (
-            <div className="flex items-center gap-4">
-              <Button onClick={() => navigate("/builder")} variant="ghost">
+            <div className="flex items-center gap-2 md:gap-4">
+              <Button onClick={() => navigate("/builder")} variant="ghost" size="sm" className="text-xs md:text-sm">
                 لوحة التحكم
               </Button>
               <UserProfileMenu
@@ -51,13 +51,13 @@ const Index = () => {
           ) : (
             <>
               <Link to="/login">
-                <Button variant="ghost">تسجيل الدخول</Button>
+                <Button variant="ghost" size="sm" className="text-xs md:text-sm">تسجيل الدخول</Button>
               </Link>
-              <Link to="/pricing">
-                <Button variant="ghost">الأسعار</Button>
+              <Link to="/pricing" className="hidden sm:inline">
+                <Button variant="ghost" size="sm" className="text-xs md:text-sm">الأسعار</Button>
               </Link>
               <Link to="/signup">
-                <Button className="gradient-primary">ابدأ الآن مجاناً</Button>
+                <Button className="gradient-primary text-xs md:text-sm" size="sm">ابدأ الآن</Button>
               </Link>
             </>
           )}

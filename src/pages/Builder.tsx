@@ -246,16 +246,16 @@ const Builder = () => {
     <div className="min-h-screen bg-muted/20">
       {/* Header */}
       <header className="bg-background border-b sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3 md:py-4">
           <div className="flex justify-between items-center">
             <Link to="/" className="flex items-center gap-2">
-              <FileText className="h-6 w-6 text-primary" />
-              <span className="font-bold text-primary">سيرتي</span>
+              <FileText className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+              <span className="font-bold text-sm md:text-base text-primary">سيرتي</span>
             </Link>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               <PlanBadge />
-              <div className="hidden md:block text-sm text-muted-foreground">
+              <div className="hidden lg:block text-sm text-muted-foreground">
                 الخطوة {currentStep} من {steps.length}: {steps[currentStep - 1].title}
               </div>
               <Button
@@ -263,8 +263,9 @@ const Builder = () => {
                 size="sm"
                 onClick={saveDraft}
                 disabled={saving}
+                className="text-xs md:text-sm"
               >
-                {saving ? "جاري الحفظ..." : "حفظ المسودة"}
+                {saving ? "..." : <span className="hidden sm:inline">حفظ المسودة</span>}<span className="sm:hidden">💾</span>
               </Button>
               {user && (
                 <UserProfileMenu
@@ -312,10 +313,10 @@ const Builder = () => {
       </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-8">
+      <div className="container mx-auto px-4 py-6 md:py-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:gap-8">
           {/* Form Section */}
-          <div className="bg-background rounded-2xl shadow-medium p-6 lg:p-8">
+          <div className="bg-background rounded-2xl shadow-medium p-4 md:p-6 lg:p-8">
             <div className="mb-6">
               <h2 className="text-3xl font-bold mb-2">{steps[currentStep - 1].title}</h2>
               <p className="text-muted-foreground">املأ المعلومات المطلوبة بعناية</p>
@@ -358,8 +359,8 @@ const Builder = () => {
             </div>
           </div>
 
-          {/* Preview Section */}
-          <div className="lg:sticky lg:top-24 h-fit">
+          {/* Preview Section - Hidden on mobile */}
+          <div className="hidden lg:block lg:sticky lg:top-24 h-fit">
             <div className="bg-background rounded-2xl shadow-medium p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold">المعاينة الفورية</h3>
