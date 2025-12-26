@@ -143,10 +143,10 @@ const Pricing = () => {
               className="w-full"
               size="lg"
               variant={isBasicActive ? "secondary" : "outline"}
-              onClick={() => handleCheckout(import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPOeZ7XjK", "الأساسية")}
-              disabled={loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPOeZ7XjK")}
+              onClick={() => handleCheckout(import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPcO627XjK", "الأساسية")}
+              disabled={loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPcO627XjK")}
             >
-              {loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPOeZ7XjK") ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 10$" : "اشترِ الآن - 10$")}
+              {loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPcO627XjK") ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 10$" : "اشترِ الآن - 10$")}
             </Button>
           </div>
 
