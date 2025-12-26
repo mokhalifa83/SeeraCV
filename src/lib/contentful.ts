@@ -54,8 +54,19 @@ export const getBlogPosts = async () => {
     return response.items;
 };
 
+// Helper to get related posts (excluding current post)
+export const getRelatedPosts = async (currentSlug: string, limit: number = 3) => {
+    const response = await contentfulClient.getEntries<BlogPostSkeleton>({
+        content_type: "blogPostForSeeraCv",
+        "fields.slug[ne]": currentSlug,
+        limit: limit,
+        // You could also filter by category if available: 'fields.category': category
+    });
+    return response.items;
+};
+
 export const getBlogPostBySlug = async (slug: string) => {
-    const response = await contentfulClient.getEntries<BlogPost>({
+    const response = await contentfulClient.getEntries<BlogPostSkeleton>({
         content_type: "blogPostForSeeraCv",
         "fields.slug": slug,
         limit: 1,
