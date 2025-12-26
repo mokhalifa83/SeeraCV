@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import { useReactToPrint } from "react-to-print";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { FileText, Download, ArrowRight, Palette } from "lucide-react";
@@ -73,68 +72,35 @@ const Preview = () => {
   };
 
   /* 
-     Professional PDF Generation using jsPDF + html2canvas
-     - No browser headers/footers
-     - Proper margins to prevent text from touching edges
-     - Automatic filename based on user's name
+     Using react-to-print for multi-page PDF support
+     Optimized CSS (@page margin: 0) hides browser headers/footers
   */
-  const generatePDF = async () => {
-    if (!previewRef.current) return;
-
-    try {
-      setDownloading(true);
-
-      // Capture the CV content as an image
-      const canvas = await html2canvas(previewRef.current, {
-        scale: 2, // Higher quality
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-      });
-
-      const imgData = canvas.toDataURL('image/png');
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-      // Create PDF with proper margins
-      const pdf = new jsPDF({
-        orientation: imgHeight > imgWidth ? 'portrait' : 'landscape',
-        unit: 'mm',
-        format: 'a4',
-      });
-
-      // Add margins: 10mm from each edge
-      const marginLeft = 10;
-      const marginTop = 10;
-      const contentWidth = imgWidth - (marginLeft * 2); // 190mm
-      const contentHeight = (canvas.height * contentWidth) / canvas.width;
-
-      // Add image to PDF with margins
-      pdf.addImage(imgData, 'PNG', marginLeft, marginTop, contentWidth, contentHeight);
-
-      // Generate filename from user's name
-      const fileName = cvData?.personalInfo?.fullName
-        ? `${cvData.personalInfo.fullName} - CV.pdf`
-        : 'السيرة الذاتية.pdf';
-
-      // Download the PDF
-      pdf.save(fileName);
-
+  const handlePrint = useReactToPrint({
+    contentRef: previewRef,
+    documentTitle: cvData?.personalInfo?.fullName
+      ? `${cvData.personalInfo.fullName} - CV`
+      : 'السيرة الذاتية',
+    onAfterPrint: () => {
       setDownloading(false);
       toast({
         title: "تمت العملية",
         description: "شكراً لاستخدامك سيرتي",
       });
-    } catch (error) {
+    },
+    onBeforePrint: () => {
+      setDownloading(true);
+      return Promise.resolve();
+    },
+    onPrintError: (errorLocation, error) => {
       setDownloading(false);
-      console.error("PDF generation error:", error);
+      console.error("Print error:", errorLocation, error);
       toast({
         title: "خطأ",
-        description: "حدث خطأ أثناء إنشاء الملف",
+        description: "حدث خطأ أثناء الطباعة",
         variant: "destructive",
       });
-    }
-  };
+    },
+  });
 
   const handleDownload = async () => {
     if (!hasPaid) {
@@ -159,9 +125,9 @@ const Preview = () => {
       // 1. Check and increment usage limit using the hook method
       await incrementDownloads();
 
-      // 2. If successful, proceed with PDF generation
+      // 2. If successful, proceed with download
       if (previewRef.current) {
-        await generatePDF();
+        handlePrint();
       }
     } catch (error: any) {
       setDownloading(false);

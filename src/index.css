@@ -156,13 +156,12 @@ All colors MUST be HSL.
      3. FORCE the sidebar background to "Bleed" out of those margins on Page 2+.
   */
   @page {
-    /* We MUST have margins for text safety on Page 2+ */
-    margin: 15mm 0mm !important;
-  }
-
-  /* But Page 1 must start at the top */
-  @page :first {
-    margin-top: 0mm !important;
+    /* 
+       margin: 0 removes browser headers/footers entirely
+       We add minimal internal padding to the content instead
+    */
+    margin: 0mm !important;
+    size: A4 portrait;
   }
 
   #cv-orange-template {
@@ -229,13 +228,13 @@ All colors MUST be HSL.
 
   /* 
      Content Padding:
-     8mm padding on all sides ensures content never sticks to any edge.
+     3mm padding ensures text doesn't touch edges while maximizing space.
   */
   .p-6,
   .p-8,
   .p-10,
   .print\:p-5 {
-    padding: 8mm !important;
+    padding: 3mm !important;
   }
 
   /* Ensure text doesn't touch the very edge if standard classes aren't used */
