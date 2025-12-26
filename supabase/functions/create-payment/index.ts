@@ -37,7 +37,11 @@ serve(async (req) => {
     if (!ALLOWED_PRICE_IDS[priceId]) {
       console.error("Invalid price ID attempted:", priceId);
       return new Response(
-        JSON.stringify({ error: "معرف السعر غير صالح" }),
+        JSON.stringify({
+          error: "معرف السعر غير صالح",
+          debug_received: priceId,
+          debug_expected: Object.keys(ALLOWED_PRICE_IDS)
+        }),
         {
           status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
