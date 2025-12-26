@@ -209,29 +209,29 @@ const Preview = () => {
       <div className="min-h-screen bg-muted/20">
         {/* Header */}
         <header className="bg-background border-b sticky top-0 z-50 shadow-sm">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex justify-between items-center">
+          <div className="container mx-auto px-4 py-3 md:py-4">
+            <div className="flex flex-wrap justify-between items-center gap-3 md:gap-4">
               <div className="flex items-center gap-2">
-                <FileText className="h-6 w-6 text-primary" />
-                <span className="font-bold text-primary">معاينة السيرة الذاتية</span>
+                <FileText className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+                <span className="font-bold text-sm md:text-base text-primary">معاينة السيرة الذاتية</span>
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 md:gap-4 flex-wrap">
                 <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-[140px] md:w-[180px] text-xs md:text-sm">
                     <Palette className="ml-2 h-4 w-4 flex-shrink-0" />
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="default">القالب الافتراضي</SelectItem>
-                    <SelectItem value="professional">قالب احترافي</SelectItem>
-                    <SelectItem value="classic">قالب كلاسيكي</SelectItem>
-                    <SelectItem value="minimal">قالب بسيط</SelectItem>
-                    <SelectItem value="orange">قالب عصري</SelectItem>
+                    <SelectItem value="default">الافتراضي</SelectItem>
+                    <SelectItem value="professional">احترافي</SelectItem>
+                    <SelectItem value="classic">كلاسيكي</SelectItem>
+                    <SelectItem value="minimal">بسيط</SelectItem>
+                    <SelectItem value="orange">عصري</SelectItem>
                   </SelectContent>
                 </Select>
 
-                <Button variant="outline" onClick={() => {
+                <Button variant="outline" size="sm" onClick={() => {
                   // Ensure data is saved before navigating
                   console.log("Edit button clicked, saving data and navigating...");
                   saveCvDataToStorage(cvData);
@@ -239,17 +239,18 @@ const Preview = () => {
                   const targetUrl = `/builder${draftId ? `?draftId=${draftId}` : ""}`;
                   console.log("Navigating to:", targetUrl);
                   navigate(targetUrl);
-                }}>
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                  تعديل
+                }} className="text-xs md:text-sm">
+                  <ArrowRight className="ml-2 h-3 w-3 md:h-4 md:w-4" />
+                  <span className="hidden sm:inline">تعديل</span>
                 </Button>
                 <Button
                   onClick={handleDownload}
-                  className="gradient-primary"
+                  className="gradient-primary text-xs md:text-sm"
                   disabled={downloading}
+                  size="sm"
                 >
-                  <Download className="ml-2 h-4 w-4" />
-                  {downloading ? "جاري التحميل..." : "تحميل PDF"}
+                  <Download className="ml-2 h-3 w-3 md:h-4 md:w-4" />
+                  {downloading ? "..." : <span className="hidden sm:inline">تحميل PDF</span>}<span className="sm:hidden">📥</span>
                 </Button>
               </div>
             </div>
@@ -257,8 +258,8 @@ const Preview = () => {
         </header>
 
         {/* Preview Content */}
-        <div className="container mx-auto px-4 py-8">
-          <div className="max-w-4xl mx-auto bg-background rounded-2xl shadow-medium p-8" ref={previewRef} id="cv-print-content">
+        <div className="container mx-auto px-2 md:px-4 py-4 md:py-8">
+          <div className="max-w-4xl mx-auto bg-background rounded-lg md:rounded-2xl shadow-medium p-4 md:p-8" ref={previewRef} id="cv-print-content">
             {renderTemplate()}
           </div>
         </div>
