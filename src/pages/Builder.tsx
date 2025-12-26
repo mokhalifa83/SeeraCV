@@ -401,6 +401,7 @@ const Builder = () => {
             © {new Date().getFullYear()} سيرتي. جميع الحقوق محفوظة.
           </p>
           <div className="flex gap-4 text-sm text-muted-foreground">
+            <Link to="/blog" className="hover:text-primary transition-colors">المدونة</Link>
             <Link to="/privacy" className="hover:text-primary transition-colors">سياسة الخصوصية</Link>
             <Link to="/terms" className="hover:text-primary transition-colors">الشروط والأحكام</Link>
             <Link to="/contact" className="hover:text-primary transition-colors">اتصل بنا</Link>

@@ -53,6 +53,9 @@ const Index = () => {
               <Link to="/login">
                 <Button variant="ghost" size="sm" className="text-xs md:text-sm">تسجيل الدخول</Button>
               </Link>
+              <Link to="/blog">
+                <Button variant="ghost" size="sm" className="text-xs md:text-sm">المدونة</Button>
+              </Link>
               <Link to="/pricing" className="hidden sm:inline">
                 <Button variant="ghost" size="sm" className="text-xs md:text-sm">الأسعار</Button>
               </Link>
