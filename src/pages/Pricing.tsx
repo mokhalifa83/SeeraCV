@@ -143,10 +143,10 @@ const Pricing = () => {
               className="w-full"
               size="lg"
               variant={isBasicActive ? "secondary" : "outline"}
-              onClick={() => handleCheckout("price_1Siebe06snnNPrsyllAgNARD", "الأساسية")}
-              disabled={loading === "price_1Siebe06snnNPrsyllAgNARD"}
+              onClick={() => handleCheckout("price_1Siebe86snnNPrsyiIAgNaRD", "الأساسية")}
+              disabled={loading === "price_1Siebe86snnNPrsyiIAgNaRD"}
             >
-              {loading === "price_1Siebe06snnNPrsyllAgNARD" ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 10$" : "اشترِ الآن - 10$")}
+              {loading === "price_1Siebe86snnNPrsyiIAgNaRD" ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 10$" : "اشترِ الآن - 10$")}
             </Button>
           </div>
 

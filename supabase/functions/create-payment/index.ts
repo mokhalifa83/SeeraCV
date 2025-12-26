@@ -8,7 +8,7 @@ const corsHeaders = {
 };
 
 // Whitelist of allowed price IDs (Hardcoded for Live Mode stability)
-const STRIPE_PRICE_BASIC = "price_1Siebe06snnNPrsyllAgNARD";
+const STRIPE_PRICE_BASIC = "price_1Siebe86snnNPrsyiIAgNaRD";
 const STRIPE_PRICE_PRO = "price_1SiebD86snnNPrsyMykdqgp4";
 
 const ALLOWED_PRICE_IDS: Record<string, string> = {
