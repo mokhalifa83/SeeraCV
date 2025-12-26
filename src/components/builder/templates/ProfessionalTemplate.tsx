@@ -17,24 +17,24 @@ const ProfessionalTemplate = ({ data }: TemplateProps) => {
 
   return (
     <div className="bg-white text-black rounded-lg min-h-[600px]">
-      {/* Header with gradient - Fixed Layout */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-t-lg print:rounded-none">
-        <div className="grid grid-cols-[auto_1fr] gap-6 items-start">
+      {/* Header with gradient - Responsive Layout */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 md:p-8 rounded-t-lg print:rounded-none">
+        <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 md:gap-6 items-center md:items-start">
           {personalInfo.photo && (
             <img
               src={personalInfo.photo}
               alt={personalInfo.fullName}
-              className="w-28 h-28 rounded-full border-4 border-white object-cover shadow-lg"
+              className="w-24 h-24 md:w-28 md:h-28 rounded-full border-4 border-white object-cover shadow-lg mx-auto md:mx-0"
             />
           )}
-          <div className="text-right">
-            <h1 className="text-4xl font-bold mb-2">
+          <div className="text-center md:text-right">
+            <h1 className="text-2xl md:text-4xl font-bold mb-2">
               {personalInfo.fullName || "الاسم الكامل"}
             </h1>
-            <p className="text-xl opacity-90 mb-3">
+            <p className="text-lg md:text-xl opacity-90 mb-3">
               {personalInfo.jobTitle || "المسمى الوظيفي"}
             </p>
-            <div className="flex flex-wrap items-center justify-start gap-4 text-sm">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-4 text-xs md:text-sm">
               {personalInfo.email && (
                 <div className="flex items-center gap-1">
                   <Mail className="h-4 w-4" />

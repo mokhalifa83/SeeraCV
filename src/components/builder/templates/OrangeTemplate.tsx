@@ -27,10 +27,10 @@ const OrangeTemplate = ({ data }: TemplateProps) => {
 
   return (
     <div id="cv-orange-template" className="bg-white text-black" dir="rtl">
-      {/* Two Column Layout */}
-      <div className="flex">
-        {/* Sidebar - Dark - Right side for RTL */}
-        <div className="w-[35%] bg-[#1a1a1a] text-white p-6 print:p-5" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
+      {/* Two Column Layout - Responsive */}
+      <div className="flex flex-col md:flex-row">
+        {/* Sidebar - Dark - Right side for RTL, Full width on mobile */}
+        <div className="w-full md:w-[35%] bg-[#1a1a1a] text-white p-6 print:p-5" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
           {/* Profile Photo */}
           {personalInfo.photo ? (
             <div className="relative mb-6">
@@ -167,8 +167,8 @@ const OrangeTemplate = ({ data }: TemplateProps) => {
           )}
         </div>
 
-        {/* Main Content - Left side for RTL */}
-        <div className="w-[65%] p-6 print:p-5 bg-white">
+        {/* Main Content - Full width on mobile, Left side for RTL on desktop */}
+        <div className="w-full md:w-[65%] p-6 print:p-5 bg-white">
           {/* Summary */}
           {summary && (
             <div className="mb-6">
