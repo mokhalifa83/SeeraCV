@@ -16,14 +16,14 @@ const ClassicTemplate = ({ data }: TemplateProps) => {
   const hobbies = data.hobbies || [];
 
   return (
-    <div className="bg-white text-black p-8 rounded-lg shadow-lg border border-gray-300 min-h-[600px]">
+    <div className="bg-white text-black p-4 md:p-8 print:p-8 rounded-lg shadow-lg border border-gray-300 min-h-[600px]">
       {/* Header */}
       <div className="text-center border-b-2 border-gray-800 pb-6 mb-6">
         {personalInfo.photo && (
           <img
             src={personalInfo.photo}
             alt={personalInfo.fullName}
-            className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-2 border-gray-800"
+            className="w-24 h-24 md:w-32 md:h-32 print:w-32 print:h-32 rounded-full mx-auto mb-4 object-cover border-2 border-gray-800"
           />
         )}
         <h1 className="text-4xl font-bold text-gray-800 mb-2 uppercase tracking-wide">

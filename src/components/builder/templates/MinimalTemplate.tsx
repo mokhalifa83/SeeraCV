@@ -16,22 +16,22 @@ const MinimalTemplate = ({ data }: TemplateProps) => {
   const hobbies = data.hobbies || [];
 
   return (
-    <div className="bg-white text-black p-10 rounded-lg min-h-[600px]">
+    <div className="bg-white text-black p-5 md:p-10 print:p-10 rounded-lg min-h-[600px]">
       {/* Header - Minimalist Style */}
       <div className="mb-8">
-        <h1 className="text-5xl font-light text-gray-900 mb-1">
+        <h1 className="text-3xl md:text-5xl print:text-5xl font-light text-gray-900 mb-1">
           {personalInfo.fullName || "الاسم الكامل"}
         </h1>
-        <p className="text-lg text-gray-500 font-light mb-4">
+        <p className="text-base md:text-lg print:text-lg text-gray-500 font-light mb-4">
           {personalInfo.jobTitle || "المسمى الوظيفي"}
         </p>
-        
+
         <div className="flex flex-wrap gap-6 text-xs text-gray-500 font-light">
           {personalInfo.email && <span>{personalInfo.email}</span>}
           {personalInfo.phone && <span>{personalInfo.phone}</span>}
           {personalInfo.city && <span>{personalInfo.city}{personalInfo.country && `, ${personalInfo.country}`}</span>}
         </div>
-        
+
         {(personalInfo.linkedin || personalInfo.website) && (
           <div className="flex flex-wrap gap-6 text-xs text-gray-500 font-light mt-2">
             {personalInfo.linkedin && (
@@ -164,10 +164,10 @@ const MinimalTemplate = ({ data }: TemplateProps) => {
                 <p className="text-xs text-gray-500 font-light">تاريخ الإنجاز: {project.date}</p>
               )}
               {project.link && (
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-xs text-gray-900 hover:underline break-all"
                 >
                   {project.link}
@@ -194,10 +194,10 @@ const MinimalTemplate = ({ data }: TemplateProps) => {
                 {cert.credentialId && <p>رقم الشهادة: {cert.credentialId}</p>}
                 {cert.verificationUrl && (
                   <p>
-                    <a 
-                      href={cert.verificationUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={cert.verificationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-gray-900 hover:underline break-all"
                     >
                       {cert.verificationUrl}

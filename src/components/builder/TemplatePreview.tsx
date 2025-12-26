@@ -17,14 +17,14 @@ const TemplatePreview = ({ data }: TemplatePreviewProps) => {
   const hobbies = data.hobbies || [];
 
   return (
-    <div className="bg-white text-black p-8 rounded-lg shadow-lg border-2 border-muted min-h-[600px] overflow-auto">
+    <div className="bg-white text-black p-4 md:p-8 print:p-8 rounded-lg shadow-lg border-2 border-muted min-h-[600px] overflow-auto">
       {/* Header */}
       <div className="text-center border-b-4 border-primary pb-6 mb-6">
         {personalInfo.photo && (
           <img
             src={personalInfo.photo}
             alt={personalInfo.fullName || "الصورة الشخصية"}
-            className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-primary/20"
+            className="w-24 h-24 md:w-32 md:h-32 print:w-32 print:h-32 rounded-full mx-auto mb-4 object-cover border-4 border-primary/20"
           />
         )}
         <h1 className="text-4xl font-bold text-primary mb-2">
