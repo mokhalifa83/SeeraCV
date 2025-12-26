@@ -102,8 +102,8 @@ const Pricing = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">الخطة الأساسية</h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-5xl font-bold">39</span>
-                <span className="text-2xl text-muted-foreground">ريال</span>
+                <span className="text-5xl font-bold">10</span>
+                <span className="text-2xl text-muted-foreground">$</span>
               </div>
               <p className="text-muted-foreground">مثالية للبداية السريعة</p>
             </div>
@@ -143,10 +143,10 @@ const Pricing = () => {
               className="w-full"
               size="lg"
               variant={isBasicActive ? "secondary" : "outline"}
-              onClick={() => handleCheckout("price_1SQWO6D588IzJukPOeZ7XjK", "الأساسية")}
-              disabled={loading === "price_1SQWO6D588IzJukPOeZ7XjK"}
+              onClick={() => handleCheckout(import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPOeZ7XjK", "الأساسية")}
+              disabled={loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPOeZ7XjK")}
             >
-              {loading === "price_1SQWO6D588IzJukPOeZ7XjK" ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 39 ر.س" : "اشترِ الآن - 39 ر.س")}
+              {loading === (import.meta.env.VITE_STRIPE_PRICE_BASIC || "price_1SQWO6D588IzJukPOeZ7XjK") ? "جاري التحميل..." : (isBasicActive ? "تمديد الباقة / شراء المزيد - 10$" : "اشترِ الآن - 10$")}
             </Button>
           </div>
 
@@ -160,8 +160,8 @@ const Pricing = () => {
             <div className="mb-6">
               <h3 className="text-2xl font-bold mb-2">الخطة الاحترافية</h3>
               <div className="flex items-baseline gap-2 mb-4">
-                <span className="text-5xl font-bold">59</span>
-                <span className="text-2xl text-muted-foreground">ريال</span>
+                <span className="text-5xl font-bold">20</span>
+                <span className="text-2xl text-muted-foreground">$</span>
               </div>
               <p className="text-muted-foreground">للحصول على أفضل النتائج</p>
             </div>
@@ -220,10 +220,10 @@ const Pricing = () => {
             <Button
               className="w-full gradient-primary"
               size="lg"
-              onClick={() => handleCheckout("price_1SQWPHD588IzJukPXDhfslCz", "الاحترافية")}
-              disabled={loading === "price_1SQWPHD588IzJukPXDhfslCz"}
+              onClick={() => handleCheckout(import.meta.env.VITE_STRIPE_PRICE_PRO || "price_1SQWPHD588IzJukPXDhfslCz", "الاحترافية")}
+              disabled={loading === (import.meta.env.VITE_STRIPE_PRICE_PRO || "price_1SQWPHD588IzJukPXDhfslCz")}
             >
-              {loading === "price_1SQWPHD588IzJukPXDhfslCz" ? "جاري التحميل..." : (isProActive ? "تمديد الباقة / شراء المزيد - 59 ر.س" : "اشترِ الآن - 59 ر.س")}
+              {loading === (import.meta.env.VITE_STRIPE_PRICE_PRO || "price_1SQWPHD588IzJukPXDhfslCz") ? "جاري التحميل..." : (isProActive ? "تمديد الباقة / شراء المزيد - 20$" : "اشترِ الآن - 20$")}
               <Sparkles className="mr-2 h-5 w-5" />
             </Button>
           </div>
@@ -295,8 +295,8 @@ const Pricing = () => {
                 </tr>
                 <tr className="font-bold">
                   <td className="p-4">السعر</td>
-                  <td className="text-center p-4">39 ريال</td>
-                  <td className="text-center p-4">59 ريال</td>
+                  <td className="text-center p-4">10$</td>
+                  <td className="text-center p-4">20$</td>
                 </tr>
               </tbody>
             </table>
