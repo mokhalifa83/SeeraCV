@@ -147,7 +147,7 @@ const Contact = () => {
               <CardContent className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">البريد الإلكتروني</h4>
-                  <p className="text-muted-foreground">support@seerati.com</p>
+                  <p className="text-muted-foreground">contact@seeracv.com</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">أوقات الرد</h4>
