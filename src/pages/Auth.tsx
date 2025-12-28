@@ -170,7 +170,7 @@ const Auth = ({ defaultTab }: { defaultTab?: "signin" | "signup" }) => {
 
     setLoading(true);
     const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
-      redirectTo: `${window.location.origin}/auth?tab=reset`,
+      redirectTo: `${window.location.origin}/auth/reset-password`,
     });
 
     setLoading(false);
