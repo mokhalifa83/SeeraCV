@@ -13,11 +13,34 @@ const ConfirmEmail = () => {
 
     useEffect(() => {
         const confirmEmail = async () => {
-            // Get token_hash and type from URL hash fragment
+            // Get parameters from URL hash fragment
             // Supabase sends: https://seeracv.com/auth/confirm#token_hash=xxx&type=signup
+            // Or on error: https://seeracv.com/auth/confirm#error=access_denied&error_code=otp_expired
             const hashParams = new URLSearchParams(window.location.hash.substring(1));
             const token_hash = hashParams.get("token_hash");
             const type = hashParams.get("type");
+            const error = hashParams.get("error");
+            const error_code = hashParams.get("error_code");
+
+            // If there's an error in the URL, check if user is already authenticated
+            if (error || error_code) {
+                console.log("Error in URL, checking session:", error, error_code);
+
+                // Check if user is already logged in (token might have been used already)
+                const { data: { session } } = await supabase.auth.getSession();
+
+                if (session?.user) {
+                    // User is authenticated, consider it success
+                    console.log("User is authenticated despite error");
+                    setStatus("success");
+                    return;
+                }
+
+                // User is not authenticated and there's an error
+                setStatus("error");
+                setErrorMessage("انتهت صلاحية رابط التأكيد أو تم استخدامه مسبقاً. إذا كنت قد أكدت بريدك بالفعل، يمكنك تسجيل الدخول مباشرة.");
+                return;
+            }
 
             if (!token_hash || !type) {
                 setStatus("error");
