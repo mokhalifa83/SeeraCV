@@ -31,6 +31,14 @@ const Auth = ({ defaultTab }: { defaultTab?: "signin" | "signup" }) => {
   const [emailSent, setEmailSent] = useState(false);
 
   useEffect(() => {
+    // Handle password recovery redirect
+    // If the user lands here with type=recovery, they should be on the reset-password page
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    if (hashParams.get("type") === "recovery") {
+      navigate(`/auth/reset-password${window.location.hash}`);
+      return;
+    }
+
     // التحقق من تسجيل الدخول
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
@@ -350,7 +358,11 @@ const Auth = ({ defaultTab }: { defaultTab?: "signin" | "signup" }) => {
           <h1 className="text-3xl font-bold text-primary">سيرتي</h1>
         </Link>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs
+          value={activeTab}
+          onValueChange={(val) => setActiveTab(val as "signin" | "signup" | "forgot")}
+          className="w-full"
+        >
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="signin">تسجيل الدخول</TabsTrigger>
             <TabsTrigger value="signup">حساب جديد</TabsTrigger>

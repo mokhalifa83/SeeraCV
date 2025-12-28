@@ -18,6 +18,7 @@ import NotFound from "./pages/NotFound";
 import BlogListing from "./pages/BlogListing";
 import BlogPost from "./pages/BlogPost";
 import ConfirmEmail from "./pages/ConfirmEmail";
+import ResetPassword from "./pages/ResetPassword";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/login" element={<Auth defaultTab="signin" />} />
             <Route path="/signup" element={<Auth defaultTab="signup" />} />
             <Route path="/auth/confirm" element={<ConfirmEmail />} />
+            <Route path="/auth/reset-password" element={<ResetPassword />} />
             <Route path="/preview" element={<Preview />} />
             <Route path="/payment-success" element={<PaymentSuccess />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
