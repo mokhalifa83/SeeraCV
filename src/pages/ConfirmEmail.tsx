@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,16 +7,17 @@ import { FileText, CheckCircle, XCircle, Loader2 } from "lucide-react";
 
 const ConfirmEmail = () => {
     const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
     const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
     const [errorMessage, setErrorMessage] = useState("");
     const [countdown, setCountdown] = useState(5);
 
     useEffect(() => {
         const confirmEmail = async () => {
-            // Get token_hash and type from URL parameters
-            const token_hash = searchParams.get("token_hash");
-            const type = searchParams.get("type");
+            // Get token_hash and type from URL hash fragment
+            // Supabase sends: https://seeracv.com/auth/confirm#token_hash=xxx&type=signup
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            const token_hash = hashParams.get("token_hash");
+            const type = hashParams.get("type");
 
             if (!token_hash || !type) {
                 setStatus("error");
@@ -48,7 +49,7 @@ const ConfirmEmail = () => {
         };
 
         confirmEmail();
-    }, [searchParams]);
+    }, []);
 
     // Auto-redirect countdown after success
     useEffect(() => {
