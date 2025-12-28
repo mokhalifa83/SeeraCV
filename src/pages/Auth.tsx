@@ -90,7 +90,7 @@ const Auth = ({ defaultTab }: { defaultTab?: "signin" | "signup" }) => {
       email,
       password,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth`,
+        emailRedirectTo: `${window.location.origin}/auth/confirm`,
         data: {
           full_name: fullName,
         },
@@ -205,7 +205,7 @@ const Auth = ({ defaultTab }: { defaultTab?: "signin" | "signup" }) => {
       type: 'signup',
       email: email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth`,
+        emailRedirectTo: `${window.location.origin}/auth/confirm`,
       },
     });
 
