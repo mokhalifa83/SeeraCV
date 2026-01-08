@@ -1,6 +1,6 @@
 export async function onRequest(context) {
   const supabaseUrl = context.env.VITE_SUPABASE_URL;
-  const supabaseKey = context.env.VITE_SUPABASE_ANON_KEY;
+  const supabaseKey = context.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
   try {
     // Simple fetch to Supabase to keep it active
